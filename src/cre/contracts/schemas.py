@@ -134,3 +134,30 @@ class LiveChange(pa.DataFrameModel):
 
     class Config:
         strict = False
+
+
+class Connections(pa.DataFrameModel):
+    """ml.connections joined with ml.labels: one row per candidate connection (Phase 4)."""
+
+    conn_id: str = pa.Field(unique=True)
+    station_key: str = pa.Field(isin=["leipzig", "erfurt", "halle", "berlin"])
+    mct_min: int = pa.Field(ge=1, le=20)
+    planned_transfer_min: int = pa.Field(ge=1, le=60)
+    outcome: str = pa.Field(isin=["made", "too_short", "b_cancelled", "a_cancelled"])
+    missed: bool
+    lost_min_if_missed: float = pa.Field(nullable=True, ge=0, le=240)
+
+    @pa.dataframe_check(error="planned transfer below station MCT")
+    def above_mct(cls, data) -> pl.LazyFrame:
+        return data.lazyframe.select(pl.col("planned_transfer_min") >= pl.col("mct_min"))
+
+    @pa.dataframe_check(error="missed must equal outcome != made")
+    def label_consistent(cls, data) -> pl.LazyFrame:
+        return data.lazyframe.select(pl.col("missed") == (pl.col("outcome") != "made"))
+
+    @pa.dataframe_check(error="lost time must be null iff A was cancelled")
+    def lost_null_iff_a_cancelled(cls, data) -> pl.LazyFrame:
+        return data.lazyframe.select(pl.col("lost_min_if_missed").is_null() == (pl.col("outcome") == "a_cancelled"))
+
+    class Config:
+        strict = False

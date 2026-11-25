@@ -67,3 +67,21 @@ Format: **date · decision** — alternatives — reason.
 - **2026-11-25 · `platform` kept as an explicit null column.** Reason: makes the absence visible to consumers.
 - **2026-11-25 · dbt-duckdb as a dev dependency.** Reason: the brief requires it. It is the SQL layer, not a runtime dependency of
   the scoring code.
+
+## Phase 4
+
+- **2026-11-25 · Candidate needs planned transfer ≥ MCT(S)** (on top of the 2–30 min window). Alternative: keep
+  2–4 min transfers. Reason: on the first build, sub-MCT transfers missed 79% of the time *by construction*. A
+  planner never offers them, so they aren't planned connections, and they'd make the model look good for free.
+- **2026-11-25 · One B per (A, T), chosen by earliest planned *arrival* at T.** Alternatives: every pair (3.7M, mostly
+  meaningless), earliest departure. Reason: earliest departure made slow trains "B" and produced negative lost times
+  when a later fast train overtook them. Earliest arrival is what a journey planner offers.
+- **2026-11-25 · S-Bahn→S-Bahn pairs and buses as A/B excluded.** Reason: at 5–10 min headways nobody plans
+  that connection; buses are replacement services with unreliable data. Buses can still be the *fallback*.
+- **2026-11-25 · Backtracking excluded** (B's next stop = A's previous stop), as are same train number and same line.
+- **2026-11-25 · Lost time floored at 0.** Reason: 2.6% of missed connections reached T *before* B's reference arrival
+  (95% are B-cancelled cases where an earlier, delayed train got there first). Nothing was lost.
+- **2026-11-25 · A-cancelled connections: labelled missed, lost time undefined (null).** Reason: the passenger never
+  reaches S, so no decision at S can help. They're kept for the classifier but excluded from the policy simulation.
+- **2026-11-25 · Leakage-free lost-time estimate L̂ = scheduled best alternative's arrival − B's planned arrival at T.**
+  Reason: the timetable is known at prediction time. corr(L̂, actual L | missed) = 0.54.
