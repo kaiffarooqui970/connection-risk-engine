@@ -1,7 +1,7 @@
 [project]
 name = "cre"
 version = "0.1.0"
-description = "Add your description here"
+description = "Calibrated connection-risk decision engine for Deutsche Bahn transfers"
 readme = "README.md"
 authors = [
     { name = "kaif farooqui", email = "kaif.farooqui10@gmail.com" }
@@ -9,7 +9,9 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "duckdb>=2.0.1",
+    "httpx>=0.28.1",
     "matplotlib>=3.11.2",
+    "pandera[polars]>=0.36.0",
     "polars>=2.2.0",
     "pyarrow>=26.0.1",
 ]
@@ -17,3 +19,23 @@ dependencies = [
 [build-system]
 requires = ["uv_build>=0.11.13,<0.12.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.6",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "BLE", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff.lint.per-file-ignores]
+"notebooks/*" = ["E501"]   # long inline SQL reads better unwrapped
+"tests/*" = ["E501", "E731"]

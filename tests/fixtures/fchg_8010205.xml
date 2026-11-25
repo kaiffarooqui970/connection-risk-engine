@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<timetable station="Leipzig Hbf" eva="8010205">
+  <s id="-4810946385632441934-2611251126-5" eva="8010205">
+    <m id="r1" t="d" c="36" ts="2611251201"/>
+    <ar ct="2611251241" cp="12"/>
+    <dp ct="2611251247" cp="12"/>
+  </s>
+  <s id="7215329483028594102-2611251242-1" eva="8010205">
+    <dp cs="c" clt="2611251150"/>
+  </s>
+  <s id="r-notice" eva="8010205">
+    <m id="r9" t="h" c="0"/>
+  </s>
+</timetable>

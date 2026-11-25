@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<timetable station="Leipzig Hbf">
+  <s id="-4810946385632441934-2611251126-5">
+    <tl f="F" t="p" o="80" c="ICE" n="1502"/>
+    <ar pt="2611251230" pp="11" ppth="München Hbf|Nürnberg Hbf|Erfurt Hbf"/>
+    <dp pt="2611251238" pp="11" ppth="Lutherstadt Wittenberg Hbf|Berlin Südkreuz|Berlin Hbf"/>
+  </s>
+  <s id="7215329483028594102-2611251242-1">
+    <tl f="D" t="p" o="800486" c="RE" n="16511"/>
+    <dp pt="2611251242" pp="20" l="RE13" ppth="Delitzsch unt Bf|Bitterfeld|Dessau Hbf"/>
+  </s>
+  <s id="1111-2611251200-9">
+    <tl f="S" t="p" o="800486" c="S" n="37522"/>
+    <ar pt="2611251255" pp="1" l="S5" ppth="Halle (Saale) Hbf|Leipzig/Halle Flughafen"/>
+  </s>
+</timetable>

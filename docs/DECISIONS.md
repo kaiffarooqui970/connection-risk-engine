@@ -41,3 +41,18 @@ Format: **date · decision** — alternatives — reason.
 - **2026-11-25 · Cancellation flags override times.** Reason: cancelled stops still carry change times.
 - **2026-11-25 · Platforms not used.** Reason: absent from the processed table; only in 6-hourly snapshots.
 - **2026-11-25 · Added matplotlib** (figures for docs/README). Lightest standard option.
+
+## Phase 2
+
+- **2026-11-25 · pandera (polars backend) + quarantine tables, fail batch above an invalid-share threshold.**
+  Alternatives: Great Expectations (heavier), dbt tests only (too late: after load). Reason: contracts at the
+  boundary, quarantine keeps bad rows inspectable, threshold separates "dirty row" from "broken source".
+- **2026-11-25 · Normalize dtypes before validating.** Reason: the source uses ns timestamps / int32. Loosening
+  the contract would hide future drift.
+- **2026-11-25 · Weather keyed in UTC.** Reason: DST fall-back duplicates local hours.
+- **2026-11-25 · httpx** (dependency). Reason: timeouts plus `MockTransport` for offline tests of retry/limit logic.
+  stdlib urllib would need hand-rolled mocking.
+- **2026-11-25 · Live store = DuckDB in GitHub Actions cache.** Alternatives: commit to a data branch (violates
+  "never commit raw data"), S3 (needs a cloud account). Reason: zero-cost demo. Documented as not durable.
+- **2026-11-25 · Missing DB creds → clean skip (exit 0).** Reason: no creds are available in this build. A red
+  scheduled job would be ignored noise.
