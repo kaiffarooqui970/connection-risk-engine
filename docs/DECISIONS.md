@@ -85,3 +85,16 @@ Format: **date · decision** — alternatives — reason.
   reaches S, so no decision at S can help. They're kept for the classifier but excluded from the policy simulation.
 - **2026-11-25 · Leakage-free lost-time estimate L̂ = scheduled best alternative's arrival − B's planned arrival at T.**
   Reason: the timetable is known at prediction time. corr(L̂, actual L | missed) = 0.54.
+
+## Phase 5
+
+- **2026-11-25 · Upstream stop "observed" iff actual departure ≤ t_pred; final recorded value used.** Alternative:
+  snapshots (unavailable). Reason: realized departures are published within ~1 min. Assumption documented.
+- **2026-11-25 · Cancellation flags never used as features.** Reason: no announcement timestamp, so leakage can't be ruled out.
+- **2026-11-25 · Historical rates: training only, out-of-fold by ISO week (counts AND prior), m-estimate m=50.**
+  Alternative: K-fold by row (leaks via same-day correlation). Reason: weeks are long enough to contain a
+  disruption episode. See POSTMORTEM #1 for the prior.
+- **2026-11-25 · Train number → smoothed late/cancel rates instead of a raw categorical.** Reason: ~4.4k levels.
+- **2026-11-25 · Holidays from OpenHolidays API, frozen into `configs/holidays_2026.csv`.** Alternatives: `holidays`
+  package (public holidays only), ferien-api.de (only SN for 2026). Reason: one source for both kinds, no new dependency.
+- **2026-11-25 · Split purge: drop connections whose A- or B-run touches two splits** (1,743 rows).

@@ -1,0 +1,19 @@
+# Source: OpenHolidays API (openholidaysapi.org), fetched 2026-11-25. Dates inclusive.
+state,kind,name,start,end
+SN,school,Sommerferien,2026-07-04,2026-08-14
+SN,school,Herbstferien,2026-10-12,2026-10-24
+SN,public,Tag der Deutschen Einheit,2026-10-03,2026-10-03
+SN,public,Reformationstag,2026-10-31,2026-10-31
+SN,public,Buß- und Bettag,2026-11-18,2026-11-18
+TH,school,Sommerferien,2026-07-04,2026-08-14
+TH,school,Herbstferien,2026-10-12,2026-10-24
+TH,public,Weltkindertag,2026-09-20,2026-09-20
+TH,public,Tag der Deutschen Einheit,2026-10-03,2026-10-03
+TH,public,Reformationstag,2026-10-31,2026-10-31
+ST,school,Sommerferien,2026-07-04,2026-08-14
+ST,school,Herbstferien,2026-10-19,2026-10-30
+ST,public,Tag der Deutschen Einheit,2026-10-03,2026-10-03
+ST,public,Reformationstag,2026-10-31,2026-10-31
+BE,school,Sommerferien,2026-07-09,2026-08-22
+BE,school,Herbstferien,2026-10-19,2026-10-31
+BE,public,Tag der Deutschen Einheit,2026-10-03,2026-10-03
