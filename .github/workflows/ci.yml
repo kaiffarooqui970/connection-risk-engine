@@ -1,0 +1,25 @@
+name: ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+      - name: Lint
+        run: |
+          uv run ruff check src tests notebooks app
+          uv run ruff format --check src tests notebooks app
+      - name: Tests (warehouse-dependent tests skip without data)
+        run: uv run pytest -q
+      - name: dbt parse (models compile)
+        run: |
+          uv run python -m cre.config
+          cd dbt && uv run dbt parse --profiles-dir .

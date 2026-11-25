@@ -35,11 +35,8 @@ log = logging.getLogger("cre.connections")
 K_ALTERNATIVES = 3
 
 
-def build(con: duckdb.DuckDBPyConnection) -> None:
-    cfg = settings()["connections"]
-    wmin, wmax, cap = cfg["min_transfer_window_min"], cfg["max_transfer_window_min"], cfg["lost_time_cap_min"]
-    con.execute("CREATE SCHEMA IF NOT EXISTS ml")
-
+def make_events(con: duckdb.DuckDBPyConnection) -> None:
+    """Temp table `ev`: mart rows + station identity and previous/next observed stop per run."""
     con.execute("""
     CREATE OR REPLACE TEMP TABLE ev AS
     WITH e AS (
@@ -51,6 +48,44 @@ def build(con: duckdb.DuckDBPyConnection) -> None:
         lead(stop_key) OVER w AS next_stop_key
     FROM e WINDOW w AS (PARTITION BY run_id ORDER BY stop_seq)
     """)
+
+
+def make_reach(con: duckdb.DuckDBPyConnection) -> None:
+    """Temp table `reach`: every hub departure x every later stop of the same run that is some connection's T."""
+    con.execute("""
+    CREATE OR REPLACE TEMP TABLE reach AS
+    SELECT d.station_key AS s, x.ident AS t, d.run_id AS d_run, d.train_type AS d_train_type,
+           d.dep_planned, d.dep_actual, d.dep_cancelled,
+           x.arr_planned AS t_arr_planned, x.arr_actual AS t_arr_actual, x.arr_cancelled AS t_arr_cancelled
+    FROM ev d
+    JOIN ev x ON x.run_id = d.run_id AND x.stop_seq > d.stop_seq
+    WHERE d.is_hub AND d.dep_planned IS NOT NULL
+      AND x.ident IN (SELECT DISTINCT t_ident FROM ml.connections)
+    QUALIFY row_number() OVER (PARTITION BY d.stop_key, x.ident ORDER BY x.stop_seq) = 1
+    """)
+
+
+def fallback_sql(cap: int, mct_offset: int = 0, conn_filter: str = "TRUE") -> str:
+    """Earliest actual arrival at T among non-B departures catchable after A's actual arrival + MCT (+offset)."""
+    return f"""
+    SELECT c.conn_id, min(r.t_arr_actual) AS fallback_arr
+    FROM ml.connections c
+    JOIN reach r
+      ON r.s = c.station_key AND r.t = c.t_ident AND r.d_run <> c.b_run_id
+     AND NOT r.dep_cancelled AND r.t_arr_actual IS NOT NULL
+     AND r.dep_actual >= c.a_arr_actual + (c.mct_min + {mct_offset}) * INTERVAL 1 MINUTE
+     AND r.dep_actual <= c.a_arr_actual + INTERVAL {cap} MINUTE
+    WHERE NOT c.a_arr_cancelled AND {conn_filter}
+    GROUP BY 1
+    """
+
+
+def build(con: duckdb.DuckDBPyConnection) -> None:
+    cfg = settings()["connections"]
+    wmin, wmax, cap = cfg["min_transfer_window_min"], cfg["max_transfer_window_min"], cfg["lost_time_cap_min"]
+    con.execute("CREATE SCHEMA IF NOT EXISTS ml")
+
+    make_events(con)
 
     con.execute(f"""
     CREATE OR REPLACE TABLE ml.connections AS
@@ -116,33 +151,10 @@ def build(con: duckdb.DuckDBPyConnection) -> None:
     con.execute("ALTER TABLE ml.connections ADD COLUMN missed BOOLEAN")
     con.execute("UPDATE ml.connections SET missed = outcome <> 'made'")
 
-    # Every departure from a hub that reaches some T later on the same run
-    con.execute("""
-    CREATE OR REPLACE TEMP TABLE reach AS
-    SELECT d.station_key AS s, x.ident AS t, d.run_id AS d_run, d.train_type AS d_train_type,
-           d.dep_planned, d.dep_actual, d.dep_cancelled,
-           x.arr_planned AS t_arr_planned, x.arr_actual AS t_arr_actual, x.arr_cancelled AS t_arr_cancelled
-    FROM ev d
-    JOIN ev x ON x.run_id = d.run_id AND x.stop_seq > d.stop_seq
-    WHERE d.is_hub AND d.dep_planned IS NOT NULL
-      AND x.ident IN (SELECT DISTINCT t_ident FROM ml.connections)
-    QUALIFY row_number() OVER (PARTITION BY d.stop_key, x.ident ORDER BY x.stop_seq) = 1
-    """)
-
+    make_reach(con)
     # Fallback F: computed for EVERY connection (not only missed). For made connections it's the
     # counterfactual "if you don't take B", which the commit policy needs.
-    con.execute(f"""
-    CREATE OR REPLACE TABLE ml.fallback AS
-    SELECT c.conn_id, min(r.t_arr_actual) AS fallback_arr
-    FROM ml.connections c
-    JOIN reach r
-      ON r.s = c.station_key AND r.t = c.t_ident AND r.d_run <> c.b_run_id
-     AND NOT r.dep_cancelled AND r.t_arr_actual IS NOT NULL
-     AND r.dep_actual >= c.a_arr_actual + c.mct_min * INTERVAL 1 MINUTE
-     AND r.dep_actual <= c.a_arr_actual + INTERVAL {cap} MINUTE
-    WHERE NOT c.a_arr_cancelled
-    GROUP BY 1
-    """)
+    con.execute(f"CREATE OR REPLACE TABLE ml.fallback AS {fallback_sql(cap)}")
 
     # Next K planned alternatives to T after B (timetable = known at prediction time)
     con.execute(f"""

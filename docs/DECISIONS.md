@@ -98,3 +98,17 @@ Format: **date · decision** — alternatives — reason.
 - **2026-11-25 · Holidays from OpenHolidays API, frozen into `configs/holidays_2026.csv`.** Alternatives: `holidays`
   package (public holidays only), ferien-api.de (only SN for 2026). Reason: one source for both kinds, no new dependency.
 - **2026-11-25 · Split purge: drop connections whose A- or B-run touches two splits** (1,743 rows).
+
+## Phase 6
+
+- **2026-11-25 · Split: train 08-01…09-14, val 09-15…09-30, test = October.** Reason: forward-in-time only;
+  October also contains the autumn holidays and a DST change, which is a fair stress test.
+- **2026-11-25 · LightGBM tuned lightly (20 Optuna trials on a 400k training subsample, early stopping on val).**
+  Reason: more trials = more looks at validation; the spread between trials was small.
+- **2026-11-25 · 3-seed ensemble (mean of probabilities).** Seed spread on test is in the 4th decimal (Brier 0.0767–0.0768),
+  so seeds are not a source of uncertainty worth worrying about here. Day-to-day variation is (see CIs).
+- **2026-11-25 · Calibrator chosen by 2-fold by-day CV inside validation → Platt** (CV log loss 0.2816 vs isotonic 0.2818 vs
+  raw 0.2836). **On test, Platt made ECE worse (0.004 raw → 0.020).** The test month's miss rate is 18.5% vs 21.1% in validation,
+  and the calibrator learned validation's level. We did *not* switch to "raw" after seeing test: that would be selecting
+  on test. Logged in POSTMORTEM #2. Both stay inside the 0.03 guardrail.
+- **2026-11-25 · pandas added** (LightGBM native categoricals + sklearn ColumnTransformer work on pandas dtypes).

@@ -14,3 +14,17 @@ Only things that actually happened in this build are listed.
 - **Fix:** the prior is out-of-fold too (`tot − own week`).
 - **Lesson:** "out-of-fold" has to cover *every* statistic computed from labels, including smoothing priors. Test
   the invariant (perturb labels, assert no change), not the implementation.
+
+## 2. Calibration step made the test month *less* calibrated (Phase 6)
+
+- **What:** Platt scaling won the calibration comparison on validation (2-fold by-day CV: ECE 0.0145 → 0.0030).
+  On the October test month it raised ECE from 0.0043 (raw LightGBM) to 0.0195.
+- **Impact:** still within the 0.03 guardrail overall, but some segments (long-distance → anything) exceed 0.03.
+  Because the decision is a *threshold on P* (P > 0.5), miscalibration directly moves decisions.
+- **Detected:** the test-set reliability comparison of raw vs calibrated (`reports/model_metrics.json`).
+- **Root cause:** base-rate shift. Miss rate 21.1% in the validation fortnight vs 18.5% in October. A post-hoc calibrator
+  fitted on a short window learns that window's level; the raw model, trained on 6 weeks, was closer to October's level.
+- **Fix (not applied retroactively):** we kept the pre-registered choice to avoid selecting on test. Going forward:
+  (a) fit the calibrator on a longer window, or with a recency-weighted refit; (b) monitor ECE daily (Phase 9), which is
+  exactly the alarm for this; (c) treat "calibration" as a model component that is re-validated, not a free win.
+- **Lesson:** calibration is fitted to a *period*. On non-stationary data a calibrator can hurt; it has to be monitored like the model.

@@ -1,0 +1,40 @@
+name: monitor
+# Daily monitoring of the live store: freshness, coverage, and (once outcomes mature) calibration/value/drift.
+on:
+  schedule:
+    - cron: "30 5 * * *"   # 05:30 UTC, after the overnight lull: judges yesterday
+  workflow_dispatch:
+
+concurrency:
+  group: collect          # shares the live store with collect.yml; never run concurrently
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+      - name: Restore live store (read-only use)
+        uses: actions/cache/restore@v4
+        with:
+          path: data/live_store.duckdb
+          key: live-store-${{ github.run_id }}
+          restore-keys: live-store-
+      - name: Monitor
+        run: uv run python -m cre.monitor.run --mode live
+      - name: Summary
+        run: |
+          echo '## Monitoring' >> "$GITHUB_STEP_SUMMARY"
+          echo '```json' >> "$GITHUB_STEP_SUMMARY"
+          cat reports/monitoring/live_summary.json >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: monitoring-${{ github.run_id }}
+          path: reports/monitoring/live_summary.json
+          retention-days: 30
