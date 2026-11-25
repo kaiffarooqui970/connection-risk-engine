@@ -1,0 +1,38 @@
+version: 2
+models:
+  - name: stg_stops
+    columns:
+      - name: stop_key
+        tests: [unique, not_null]
+      - name: run_id
+        tests: [not_null]
+      - name: station_key
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['leipzig', 'erfurt', 'halle', 'berlin', 'other']
+      - name: train_category
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['long_distance', 'regional', 'sbahn', 'bus', 'unknown']
+  - name: stg_runs
+    columns:
+      - name: run_id
+        tests: [unique, not_null]
+      - name: n_stops
+        tests:
+          - accepted_range:
+              arguments:
+                min_value: 1
+                max_value: 500
+  - name: stg_weather
+    columns:
+      - name: ts_utc
+        tests: [not_null]
+      - name: precipitation_mm
+        tests:
+          - accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 150

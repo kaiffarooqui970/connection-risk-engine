@@ -1,0 +1,7 @@
+cre:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('CRE_DUCKDB', '../data/cre.duckdb') }}"
+      threads: 4

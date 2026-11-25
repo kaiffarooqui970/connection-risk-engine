@@ -1,0 +1,44 @@
+version: 2
+models:
+  - name: fct_stop_events
+    description: One row per (run, stop). Grain enforced by the unique test on stop_key.
+    columns:
+      - name: stop_key
+        tests: [unique, not_null]
+      - name: run_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_runs')
+                field: run_id
+      - name: stop_seq
+        tests:
+          - not_null
+          - accepted_range:
+              arguments:
+                min_value: 1
+                max_value: 500
+      - name: arr_delay_min
+        description: Actual minus planned arrival; null if cancelled or terminus/origin.
+        tests:
+          - accepted_range:
+              arguments:
+                min_value: -30
+                max_value: 1440
+      - name: dep_delay_min
+        tests:
+          - accepted_range:
+              arguments:
+                min_value: -30
+                max_value: 1440
+      - name: run_progress
+        tests:
+          - accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+      - name: arr_cancelled
+        tests: [not_null]
+      - name: dep_cancelled
+        tests: [not_null]

@@ -56,3 +56,14 @@ Format: **date · decision** — alternatives — reason.
   "never commit raw data"), S3 (needs a cloud account). Reason: zero-cost demo. Documented as not durable.
 - **2026-11-25 · Missing DB creds → clean skip (exit 0).** Reason: no creds are available in this build. A red
   scheduled job would be ignored noise.
+
+## Phase 3
+
+- **2026-11-25 · EDA fixes encoded once in `stg_stops`** (run_id, cancelled → no actual, dep = max(dep, arr)),
+  each guarded by a singular dbt test. Reason: a fix that lives in one place can't drift between pipelines.
+- **2026-11-25 · Hub config → dbt seed generated from `settings.toml`.** Alternative: dbt vars / a hand-written
+  seed. Reason: one source of truth for station config.
+- **2026-11-25 · Mart dedups the same physical departure under two run ids** (EDA #9; keep lowest run_id).
+- **2026-11-25 · `platform` kept as an explicit null column.** Reason: makes the absence visible to consumers.
+- **2026-11-25 · dbt-duckdb as a dev dependency.** Reason: the brief requires it. It is the SQL layer, not a runtime dependency of
+  the scoring code.
