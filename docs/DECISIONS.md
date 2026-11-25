@@ -29,3 +29,15 @@ Format: **date · decision** — alternatives — reason.
 - **2026-11-25 · Repo location `~/connection-risk-engine`, Python 3.12 via uv.** Reason: the Desktop is
   iCloud-synced (venvs break). 3.12 because the system Python is 3.15 and lightgbm/dbt wheels lag; the
   brief requires 3.11+.
+
+## Phase 1
+
+- **2026-11-25 · `run_id` = ride id + start timestamp parsed from stop `id`.** Alternative: `train_line_ride_id`
+  as documented. Reason: the documented id groups many runs of a line (duplicates, 50% time-order agreement);
+  the parsed key is unique per (run, stop) and 99.92% time-ordered.
+- **2026-11-25 · Effective actual departure = max(departure_change, arrival_change).** Alternative: drop rows.
+  Reason: 15.6k rows depart "before arriving" by ~1 min, which is a stale departure forecast. Dropping them would bias
+  against S-Bahn; clamping is physically correct.
+- **2026-11-25 · Cancellation flags override times.** Reason: cancelled stops still carry change times.
+- **2026-11-25 · Platforms not used.** Reason: absent from the processed table; only in 6-hourly snapshots.
+- **2026-11-25 · Added matplotlib** (figures for docs/README). Lightest standard option.

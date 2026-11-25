@@ -1,0 +1,64 @@
+# Single source of truth for scope and assumptions. Changing a value here = a DECISIONS.md entry.
+[data]
+hf_base = "https://huggingface.co/datasets/piebro/deutsche-bahn-data/resolve/main/monthly_processed_data"
+months = ["2026-08", "2026-09", "2026-10"]
+raw_dir = "data/raw"
+duckdb_path = "data/cre.duckdb"
+
+[[stations]]
+key = "leipzig"
+name = "Leipzig Hbf"
+evas = ["08010205", "08098205"]  # upper level + City-Tunnel (tief)
+lat = 51.3455
+lon = 12.3821
+state = "SN"
+mct_min = 5
+
+[[stations]]
+key = "erfurt"
+name = "Erfurt Hbf"
+evas = ["08010101"]
+lat = 50.9725
+lon = 11.0380
+state = "TH"
+mct_min = 5
+
+[[stations]]
+key = "halle"
+name = "Halle (Saale) Hbf"
+evas = ["08010159"]
+lat = 51.4776
+lon = 11.9870
+state = "ST"
+mct_min = 5
+
+[[stations]]
+key = "berlin"
+name = "Berlin Hauptbahnhof"
+evas = ["08011160", "08098160", "08089021"]
+lat = 52.5250
+lon = 13.3694
+state = "BE"
+mct_min = 8
+
+[connections]
+min_transfer_window_min = 2
+max_transfer_window_min = 30
+lost_time_cap_min = 240
+risky_slack_min = 10
+
+[prediction]
+lead_times_min = [30, 10]
+
+[split]
+train_end = "2026-09-14"   # inclusive
+val_end = "2026-09-30"     # inclusive; test = after val_end
+
+[decision]
+w_late = 2.0
+w_plan = 1.0
+w_late_grid = [1.0, 1.5, 2.0, 3.0]
+
+[live]
+base_url = "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1"
+max_requests_per_min = 60
