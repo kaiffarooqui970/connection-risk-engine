@@ -58,6 +58,9 @@ val_end = "2026-09-30"     # inclusive; test = after val_end
 w_late = 2.0
 w_plan = 1.0
 w_late_grid = [1.0, 1.5, 2.0, 3.0]
+# Serving gate (pre-registered 2026-11-27, DECISIONS Phase 11): never advise switching when naive slack >= this.
+# Not applied to the October evaluation (it was chosen after seeing it); first judged on the next month.
+commit_gate_slack_min = 10
 
 [live]
 base_url = "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1"

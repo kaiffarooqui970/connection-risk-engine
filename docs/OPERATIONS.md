@@ -43,7 +43,8 @@ world change, and retraining on a bug bakes it in.
 - **Triggered:** any RETRAIN action above.
 - **Recipe:** identical pipeline. Training window = the most recent 6 weeks, validation = the following ~2 weeks,
   historical-rate features recomputed on the new training window only.
-- **Release gates** (all must hold on the new validation period): log loss ≤ champion's; ECE ≤ 0.03; decision value ≥
+- **Release gates** (all must hold on the new validation period): commit rate on non-risky connections ≤ 1% (with the
+  serving gate `commit_gate_slack_min` applied); log loss ≤ champion's; ECE ≤ 0.03; decision value ≥
   champion's (paired, by-day bootstrap CI must not be entirely below 0); leakage tests pass.
 
 ## 5. Shadow mode

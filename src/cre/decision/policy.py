@@ -53,13 +53,28 @@ class Recommendation:
 
 
 def recommend(
-    p: float, e_hat: float, w_late: float = 2.0, w_plan: float = 1.0, fallback: bool = False
+    p: float,
+    e_hat: float,
+    w_late: float = 2.0,
+    w_plan: float = 1.0,
+    fallback: bool = False,
+    naive_slack: float | None = None,
+    gate_slack: float | None = None,
 ) -> Recommendation:
+    """`gate_slack`: if set and `naive_slack >= gate_slack`, never advise switching (release-blocking guardrail
+    "don't tell people to abandon a safe-looking connection", EVALUATION §5 / DECISIONS Phase 11)."""
     e = float(min(CAP, max(0.0, e_hat)))
     commit = bool(commit_decision(np.array([p]), np.array([e]), w_late, w_plan)[0])
     thr = w_plan / w_late
+    gated = gate_slack is not None and naive_slack is not None and naive_slack >= gate_slack
     if e >= CAP:
         reason = "No alternative to your next stop within 4 h, so keep the plan."
+        commit = False
+    elif gated and commit:
+        reason = (
+            f"P(miss) {p:.0%} is above {thr:.0%}, but your connection still has {naive_slack:.0f} min of slack: "
+            "keep the plan and check again closer to arrival."
+        )
         commit = False
     elif commit:
         reason = f"P(miss) {p:.0%} is above {thr:.0%}: planning on the alternative (+{e:.0f} min) beats gambling."

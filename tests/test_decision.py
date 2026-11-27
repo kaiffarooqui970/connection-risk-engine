@@ -25,3 +25,11 @@ def test_failed_alternative_is_charged_as_unplanned():
 def test_recommend_no_alternative_keeps():
     assert recommend(0.9, 240).action == "keep"
     assert recommend(0.9, 15).action == "take_alternative"
+
+
+def test_gate_keeps_safe_looking_connections():
+    # would commit on P alone, but slack >= gate -> keep (non-risky guardrail)
+    assert recommend(0.9, 15, naive_slack=12, gate_slack=10).action == "keep"
+    assert recommend(0.9, 15, naive_slack=8, gate_slack=10).action == "take_alternative"
+    assert recommend(0.9, 15, naive_slack=12).action == "take_alternative"  # no gate configured
+    assert recommend(0.2, 15, naive_slack=12, gate_slack=10).reason.startswith("P(miss) 20% is below")

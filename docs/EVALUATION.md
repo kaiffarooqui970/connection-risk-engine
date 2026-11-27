@@ -15,7 +15,7 @@ All numbers are on the held-out test month (**October 2026**). Nothing was tuned
   from *framing the decision with a cost model at all*, and a one-line rule gets most of it.
 - In **pure minutes (`w_late = 1`) every policy saves exactly 0**, as DESIGN §1.1 predicts. Any time saving
   claimed here comes from valuing unplanned waiting above planned waiting.
-- **Guardrails: 3 of 5 pass, 1 fails, 1 is unmeasured.** The model's commit rate on non-risky connections is
+- **Guardrails: 3 of 5 pass, 1 fails, 1 is unmeasured.** The failing one now has a pre-registered fix (§5). The model's commit rate on non-risky connections is
   **1.74% against a 1% limit**. The fallback model's ECE is **0.031 against 0.03**. Details in §5.
 
 ## 1. Probability quality (classifier)
@@ -145,6 +145,12 @@ Options, all to be validated on the *next* month and not on October:
 these commits earn);
 (b) require a higher P on non-risky connections;
 (c) argue for changing the guardrail. That needs a DECISIONS entry *before* looking at new data.
+
+**Chosen (pre-registered 2026-11-27, DECISIONS Phase 11): option (a).** Serving never advises switching when
+`naive_slack ≥ 10` (`decision.commit_gate_slack_min`). On risky connections the gate changes nothing, because it only
+touches non-risky ones. On October the gate would cost 10,914 × 2.06 / 885,054 ≈ **0.025 min per connection overall**
+(2.883 → 2.857). This is arithmetic on the reported numbers, not a re-tuned result. The October headline stays
+ungated. The gated policy's first honest test is the next month.
 
 ## 6. Monitoring replay and shadow mode (Phase 9)
 

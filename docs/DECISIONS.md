@@ -152,3 +152,14 @@ Format: **date · decision** — alternatives — reason.
 - **2026-11-27 · The Streamlit app reads only `app/bundle/` (5.8 MB, committed).** Alternative: query the warehouse.
   Reason: the 1.5 GB DuckDB file can't be deployed to Streamlit Community Cloud. Row-level explorer = last 7 days
   of October; daily calibration covers the whole month.
+
+## Phase 11
+
+- **2026-11-27 · Serving gate: never advise switching when naive slack ≥ 10 min** (`commit_gate_slack_min`). Alternatives:
+  a higher P threshold on non-risky connections; relaxing the 1% guardrail. Reason: it fixes the release-blocking
+  guardrail by construction (0% non-risky commits), costs about 0.025 min per connection on October (arithmetic, see
+  EVALUATION §5), and is easy to explain ("you still have slack, check again closer to arrival"). It is chosen
+  *before* any November data is scored. October results stay ungated, so test was not used to select it.
+- **2026-11-27 · Temperature stays in the model for now; it is reconsidered at the next retrain.** Reason: dropping it
+  means retraining and re-reporting October, which would mix model selection with test results. The seasonal PSI
+  (3.06) is logged in EVALUATION §6 and comes first on the next retrain's checklist.

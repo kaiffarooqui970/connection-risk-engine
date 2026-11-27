@@ -17,6 +17,7 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
+from cre.config import settings  # noqa: E402
 from cre.decision.policy import recommend  # noqa: E402
 
 BUNDLE = ROOT / "app" / "bundle"
@@ -74,7 +75,14 @@ with tab1:
         pick = st.selectbox("Connection", order.lbl.tolist())
         r = order[order.lbl == pick].iloc[0]
         p = float(r.p_fallback if stale else r.p_lgb_cal)
-        rec = recommend(p, float(r.e_hat), w_late=w_late, fallback=stale)
+        rec = recommend(
+            p,
+            float(r.e_hat),
+            w_late=w_late,
+            fallback=stale,
+            naive_slack=float(r.naive_slack),
+            gate_slack=settings()["decision"].get("commit_gate_slack_min"),
+        )
         m1, m2, m3, m4 = st.columns(4)
         m1.metric("P(miss)", f"{p:.0%}")
         m2.metric("Expected lost time if you keep the plan", f"{rec.expected_lost_min:.0f} min")

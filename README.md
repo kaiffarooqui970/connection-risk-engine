@@ -9,7 +9,8 @@ per risky connection** vs always-keep (95% CI 9.1–10.5). That is 71% of what h
 and **+0.43 min (CI 0.36–0.49)** more than the best simple rule. In pure minutes, nothing can beat "always keep"
 (proof in [DESIGN §1.1](docs/DESIGN.md)). The value exists only because unplanned waiting is weighted 2× planned
 waiting, and results at weights 1–3 are reported alongside. One release guardrail fails (commit rate on safe
-connections: 1.74% vs ≤ 1%). Full results: **[docs/EVALUATION.md](docs/EVALUATION.md)**.
+connections: 1.74% vs ≤ 1%). A serving gate, pre-registered before the next month is scored, closes it at a cost of
+~0.03 min per connection. Full results: **[docs/EVALUATION.md](docs/EVALUATION.md)**.
 
 ![policy comparison](reports/figures/policy_comparison.png)
 

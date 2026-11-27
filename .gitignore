@@ -12,3 +12,4 @@ dbt/logs/
 dbt/dbt_packages/
 models_store/
 .DS_Store
+reports/monitoring/live_summary.json
