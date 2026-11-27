@@ -1,6 +1,6 @@
 # DESIGN — "Will I make my connection?"
 
-*Status: Phase 0, written before any modelling code. Updated only via `DECISIONS.md` entries.*
+*Status: Phase 0, written before any modelling code. Updated only via `DECISIONS.md` entries. Results: `EVALUATION.md`.*
 
 ## 1. The user and the decision
 

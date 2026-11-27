@@ -112,3 +112,43 @@ Format: **date · decision** — alternatives — reason.
   and the calibrator learned validation's level. We did *not* switch to "raw" after seeing test: that would be selecting
   on test. Logged in POSTMORTEM #2. Both stay inside the 0.03 guardrail.
 - **2026-11-25 · pandas added** (LightGBM native categoricals + sklearn ColumnTransformer work on pandas dtypes).
+
+## Phase 7
+
+- **2026-11-27 · Probability policies use the cost-model threshold `P > w_plan / w_late`, never a tuned one.**
+  Alternative: tune the threshold on validation like the rules. Reason: with a calibrated P the threshold follows from
+  the costs. Needing a tuned threshold would mean the calibration is wrong.
+- **2026-11-27 · Rule thresholds tuned on validation over all connections, grid-searched; "never commit" (−1e9) wins
+  if no threshold saves anything.** Result: transfer-time rule = never (at w=2), slack rule X = 4 min.
+- **2026-11-27 · Ê = planned arrival at T of the earliest alternative still reachable given A's known delay + MCT,
+  minus B's planned arrival at T, capped at 240.** Reason: uses only the timetable plus information known at `t_pred`.
+- **2026-11-27 · Realized commit cost charges minutes beyond the promised Ê as unplanned (`w_late`).** Reason: if the
+  alternative itself fails, the passenger is waiting unexpectedly again.
+- **2026-11-27 · Model vs best baseline is a paired by-day bootstrap** (same resampled days for both). Reason:
+  unpaired CIs overlap even when one policy wins on almost every day.
+- **2026-11-27 · Non-risky commit-rate guardrail breached (1.74% > 1%); not fixed on October.** Alternative: gate
+  commits to risky connections now. Reason: changing the policy after seeing test would make October a validation
+  set. The fix options are listed in EVALUATION §5 and must be decided before the next month's data is scored.
+
+## Phase 8
+
+- **2026-11-27 · Disruption days derived from the data (top-decile daily miss or cancellation share) + weather
+  extremes (gust ≥ 60 km/h or rain ≥ 5 mm/h).** Alternative: an external strike/storm calendar. Reason: none is
+  available offline in a reproducible form; the data-driven definition is circular-ish (high-miss days) and is
+  reported as such.
+
+## Phase 9
+
+- **2026-11-27 · Replay freshness proxy: a test day with < 50% of the median row count = STALE.** Reason: historical
+  data has no feed timestamps. In October no day triggered it.
+- **2026-11-27 · Shadow candidate = champion recipe on fresher data (train through Sep 22), isotonic calibration on
+  Sep 23–30, scored on Oct 1–14 (14 days = `SHADOW_MIN_DAYS`).** Reason: it tests the operational answer to
+  POSTMORTEM #2 (refit closer to deployment). Verdict: promote (log loss −0.0032, ECE 0.012).
+- **2026-11-27 · Temperature PSI 3.06 does not trigger retraining** because it is not a key feature in
+  `rules.PSI_KEY_FEATURES`. Logged as a seasonality risk for the next retrain (EVALUATION §6).
+
+## Phase 10
+
+- **2026-11-27 · The Streamlit app reads only `app/bundle/` (5.8 MB, committed).** Alternative: query the warehouse.
+  Reason: the 1.5 GB DuckDB file can't be deployed to Streamlit Community Cloud. Row-level explorer = last 7 days
+  of October; daily calibration covers the whole month.

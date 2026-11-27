@@ -1,0 +1,57 @@
+{
+  "features": [
+    "lead_min",
+    "planned_transfer_min",
+    "a_run_progress",
+    "b_stops_before_s",
+    "hour",
+    "weekday",
+    "is_weekend",
+    "is_rush",
+    "is_public_holiday",
+    "is_school_holiday",
+    "temperature_c",
+    "precip_mm_1h",
+    "precip_mm_3h",
+    "wind_gust_kmh",
+    "hist_miss_rate",
+    "hist_a_late_rate",
+    "hist_b_cancel_rate",
+    "l_hat_planned_min",
+    "station_key",
+    "a_category",
+    "b_category",
+    "a_train_type",
+    "b_train_type"
+  ],
+  "calibration": "platt",
+  "test": {
+    "n": 908484,
+    "base_rate": 0.18445234038243932,
+    "brier": 0.12051802789266908,
+    "log_loss": 0.3908357611765626,
+    "ece": 0.03137646506586987,
+    "roc_auc": 0.7889288583525654,
+    "pr_auc": 0.5120339767400329
+  },
+  "test_by_lead": {
+    "10": {
+      "n": 454242,
+      "base_rate": 0.18445234038243932,
+      "brier": 0.12051718452985213,
+      "log_loss": 0.3908421595792169,
+      "ece": 0.031394550611901766,
+      "roc_auc": 0.7889013204479114,
+      "pr_auc": 0.5120435191375703
+    },
+    "30": {
+      "n": 454242,
+      "base_rate": 0.18445234038243932,
+      "brier": 0.12051887125548597,
+      "log_loss": 0.3908293627739084,
+      "ece": 0.03135837951983799,
+      "roc_auc": 0.7889564780574656,
+      "pr_auc": 0.5120271416627233
+    }
+  }
+}

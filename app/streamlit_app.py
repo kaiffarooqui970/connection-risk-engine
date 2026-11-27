@@ -130,7 +130,7 @@ with tab2:
         )
     )
     a.subheader("Calibration (bundle sample of the test month)")
-    a.altair_chart(diag.encode(x="x", y="y") + pts, use_container_width=True)
+    a.altair_chart(diag.encode(x="x", y="y") + pts, width="stretch")
     t = mm["test"]["lgb_cal"]
     a.caption(f"Full test month: Brier {t['brier']:.4f}, ECE {t['ece']:.4f}, ROC-AUC {t['roc_auc']:.3f}.")
     h = pm["test_headline"]
@@ -165,7 +165,7 @@ with tab2:
     )
     err = alt.Chart(pc).mark_errorbar().encode(x=alt.X("policy", sort=None), y="lo", y2="hi")
     b.subheader("Policy comparison (test month, 95% CI by day)")
-    b.altair_chart(bars + err, use_container_width=True)
+    b.altair_chart(bars + err, width="stretch")
     b.caption(
         f"Unplanned waiting weighted {w_late}× planned waiting. At 1× (pure minutes) no policy can beat "
         "'always keep' by construction; see docs/DESIGN.md §1.1."
@@ -180,6 +180,6 @@ with tab3:
     dl = daily.melt("day", ["predicted", "observed"], var_name="series", value_name="rate")
     st.altair_chart(
         alt.Chart(dl).mark_line(point=True).encode(x="day:T", y=alt.Y("rate", title="miss rate"), color="series"),
-        use_container_width=True,
+        width="stretch",
     )
-    st.dataframe(daily.rename(columns={"ece": "daily ECE"}), use_container_width=True, hide_index=True)
+    st.dataframe(daily.rename(columns={"ece": "daily ECE"}), width="stretch", hide_index=True)

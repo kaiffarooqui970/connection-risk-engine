@@ -1,0 +1,159 @@
+{
+  "mode": "replay",
+  "days": 31,
+  "actions_by_day": {
+    "2026-10-01": [
+      "OK"
+    ],
+    "2026-10-02": [
+      "OK"
+    ],
+    "2026-10-03": [
+      "OK"
+    ],
+    "2026-10-04": [
+      "WARN: 7-day ECE 0.032 > 0.03"
+    ],
+    "2026-10-05": [
+      "WARN: 7-day ECE 0.032 > 0.03"
+    ],
+    "2026-10-06": [
+      "WARN: 7-day ECE 0.034 > 0.03"
+    ],
+    "2026-10-07": [
+      "WARN: 7-day ECE 0.032 > 0.03"
+    ],
+    "2026-10-08": [
+      "OK"
+    ],
+    "2026-10-09": [
+      "OK"
+    ],
+    "2026-10-10": [
+      "OK"
+    ],
+    "2026-10-11": [
+      "OK"
+    ],
+    "2026-10-12": [
+      "OK"
+    ],
+    "2026-10-13": [
+      "OK"
+    ],
+    "2026-10-14": [
+      "OK"
+    ],
+    "2026-10-15": [
+      "OK"
+    ],
+    "2026-10-16": [
+      "WARN: 7-day ECE 0.034 > 0.03"
+    ],
+    "2026-10-17": [
+      "WARN: 7-day ECE 0.035 > 0.03"
+    ],
+    "2026-10-18": [
+      "WARN: 7-day ECE 0.035 > 0.03"
+    ],
+    "2026-10-19": [
+      "WARN: 7-day ECE 0.038 > 0.03"
+    ],
+    "2026-10-20": [
+      "WARN: 7-day ECE 0.040 > 0.03"
+    ],
+    "2026-10-21": [
+      "WARN: 7-day ECE 0.040 > 0.03"
+    ],
+    "2026-10-22": [
+      "WARN: 7-day ECE 0.039 > 0.03"
+    ],
+    "2026-10-23": [
+      "WARN: 7-day ECE 0.038 > 0.03"
+    ],
+    "2026-10-24": [
+      "WARN: 7-day ECE 0.037 > 0.03"
+    ],
+    "2026-10-25": [
+      "WARN: 7-day ECE 0.036 > 0.03"
+    ],
+    "2026-10-26": [
+      "WARN: 7-day ECE 0.037 > 0.03"
+    ],
+    "2026-10-27": [
+      "WARN: 7-day ECE 0.034 > 0.03"
+    ],
+    "2026-10-28": [
+      "WARN: 7-day ECE 0.034 > 0.03"
+    ],
+    "2026-10-29": [
+      "WARN: 7-day ECE 0.034 > 0.03"
+    ],
+    "2026-10-30": [
+      "WARN: 7-day ECE 0.034 > 0.03"
+    ],
+    "2026-10-31": [
+      "WARN: 7-day ECE 0.037 > 0.03"
+    ]
+  },
+  "days_with_non_ok_actions": 20,
+  "shadow": {
+    "days": 14,
+    "champion": {
+      "n": 409090,
+      "base_rate": 0.1613923586496859,
+      "brier": 0.07064558088091123,
+      "log_loss": 0.2465195237213476,
+      "ece": 0.026131531661178518,
+      "roc_auc": 0.908321066862345,
+      "pr_auc": 0.7669298695892737
+    },
+    "candidate": {
+      "n": 409090,
+      "base_rate": 0.1613923586496859,
+      "brier": 0.06989505400596241,
+      "log_loss": 0.2433070797836731,
+      "ece": 0.012048924452910779,
+      "roc_auc": 0.9086337125210261,
+      "pr_auc": 0.7618266541632215
+    },
+    "value_gain": 0.01245325769384742,
+    "promote": true,
+    "reason": "promote"
+  },
+  "psi_test_month_vs_train": {
+    "temperature_c": 3.064,
+    "hist_b_cancel_rate": 0.1504,
+    "hist_a_late_rate": 0.0738,
+    "wind_gust_kmh": 0.0717,
+    "b_train_type": 0.0568,
+    "l_hat_planned_min": 0.0281,
+    "a_train_type": 0.0224,
+    "weekday": 0.0199,
+    "station_key": 0.016,
+    "is_school_holiday": 0.0108,
+    "a_run_progress": 0.0095,
+    "hist_miss_rate": 0.0093,
+    "a_min_since_obs": 0.0082,
+    "a_stops_remaining": 0.0066,
+    "precip_mm_3h": 0.0059,
+    "a_planned_min_remaining": 0.0051,
+    "b_stops_before_s": 0.0049,
+    "b_known_delay": 0.0047,
+    "a_delay_trend_2": 0.0047,
+    "naive_slack": 0.0044,
+    "a_delay_trend_1": 0.0029,
+    "b_category": 0.0026,
+    "a_category": 0.0023,
+    "a_started": 0.0021,
+    "a_known_delay": 0.002,
+    "hour": 0.002,
+    "b_started": 0.0015,
+    "planned_transfer_min": 0.0012,
+    "is_weekend": 0.0005,
+    "is_rush": 0.0001,
+    "lead_min": 0.0,
+    "precip_mm_1h": 0.0,
+    "is_public_holiday": 0.0
+  }
+}

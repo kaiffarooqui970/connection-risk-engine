@@ -39,7 +39,8 @@ def main() -> None:
                              a_arr_planned, a_arr_actual, b_dep_planned, b_dep_actual
                       FROM ml.connections""").df()
     b = sim.merge(
-        feats[["conn_id", "lead_min", "p_fallback", "a_known_delay", "b_known_delay", "a_started"]],
+        # a_known_delay already comes with the sim frame; merging it twice would suffix it to _x/_y
+        feats[["conn_id", "lead_min", "p_fallback", "b_known_delay", "a_started"]],
         on=["conn_id", "lead_min"],
     ).merge(info, on="conn_id")
     keep = [

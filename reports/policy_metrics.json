@@ -1,0 +1,1057 @@
+{
+  "w_late": 2.0,
+  "w_plan": 1.0,
+  "rule_thresholds_tuned_on_val": {
+    "rule_transfer": -1000000000.0,
+    "rule_slack": 4
+  },
+  "test_headline": {
+    "always_keep": {
+      "risky": {
+        "n": 257606,
+        "saved_per_conn": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0,
+        "unnecessary_switch_rate": 0.0,
+        "unnecessary_switch_cost_per_conn": 0.0,
+        "missed_warning_rate": 0.43612338221935826,
+        "missed_warning_cost_per_conn": 13.848854452147854
+      },
+      "all": {
+        "n": 885054,
+        "saved_per_conn": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0,
+        "unnecessary_switch_rate": 0.0,
+        "unnecessary_switch_cost_per_conn": 0.0,
+        "missed_warning_rate": 0.15850219308652352,
+        "missed_warning_cost_per_conn": 4.807585751829832
+      },
+      "commit_rate_non_risky": 0.0
+    },
+    "rule_transfer": {
+      "risky": {
+        "n": 257606,
+        "saved_per_conn": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0,
+        "unnecessary_switch_rate": 0.0,
+        "unnecessary_switch_cost_per_conn": 0.0,
+        "missed_warning_rate": 0.43612338221935826,
+        "missed_warning_cost_per_conn": 13.848854452147854
+      },
+      "all": {
+        "n": 885054,
+        "saved_per_conn": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0,
+        "unnecessary_switch_rate": 0.0,
+        "unnecessary_switch_cost_per_conn": 0.0,
+        "missed_warning_rate": 0.15850219308652352,
+        "missed_warning_cost_per_conn": 4.807585751829832
+      },
+      "commit_rate_non_risky": 0.0
+    },
+    "rule_slack": {
+      "risky": {
+        "n": 257606,
+        "saved_per_conn": 9.38923006451713,
+        "ci95": [
+          8.66815352311485,
+          10.072632275461185
+        ],
+        "commit_rate": 0.3337732816782218,
+        "unnecessary_switch_rate": 0.044948487224676446,
+        "unnecessary_switch_cost_per_conn": 1.5165058267276383,
+        "missed_warning_rate": 0.157426457458289,
+        "missed_warning_cost_per_conn": 2.9431185609030845
+      },
+      "all": {
+        "n": 885054,
+        "saved_per_conn": 2.732852458720033,
+        "ci95": [
+          2.498404386412579,
+          2.968744012566413
+        ],
+        "commit_rate": 0.09714887453194947,
+        "unnecessary_switch_rate": 0.013082817545596087,
+        "unnecessary_switch_cost_per_conn": 0.44139792600225525,
+        "missed_warning_rate": 0.07738397883067022,
+        "missed_warning_cost_per_conn": 1.6333353671075437
+      },
+      "commit_rate_non_risky": 0.0
+    },
+    "historical_rate": {
+      "risky": {
+        "n": 257606,
+        "saved_per_conn": 0.0014984123040612408,
+        "ci95": [
+          -0.04791945077005872,
+          0.04579039851679443
+        ],
+        "commit_rate": 0.01856711412001273,
+        "unnecessary_switch_rate": 0.009308789391551438,
+        "unnecessary_switch_cost_per_conn": 0.3481557106589132,
+        "missed_warning_rate": 0.4273347670473514,
+        "missed_warning_cost_per_conn": 13.499200329184879
+      },
+      "all": {
+        "n": 885054,
+        "saved_per_conn": -0.010225364780002124,
+        "ci95": [
+          -0.025211427119112957,
+          0.004860059086222068
+        ],
+        "commit_rate": 0.0064674019890311775,
+        "unnecessary_switch_rate": 0.0032156230015343698,
+        "unnecessary_switch_cost_per_conn": 0.12043784899000513,
+        "missed_warning_rate": 0.1557927538884633,
+        "missed_warning_cost_per_conn": 4.697373267619829
+      },
+      "commit_rate_non_risky": 0.0014997258736979
+    },
+    "logreg": {
+      "risky": {
+        "n": 257606,
+        "saved_per_conn": 8.646615373865515,
+        "ci95": [
+          7.970892394390112,
+          9.333918861824213
+        ],
+        "commit_rate": 0.31608347631654543,
+        "unnecessary_switch_rate": 0.04479709323540601,
+        "unnecessary_switch_cost_per_conn": 1.0181789244039348,
+        "missed_warning_rate": 0.18216190616678182,
+        "missed_warning_cost_per_conn": 4.184060153878403
+      },
+      "all": {
+        "n": 885054,
+        "saved_per_conn": 2.4929529723610084,
+        "ci95": [
+          2.2687464987645143,
+          2.7236768721437556
+        ],
+        "commit_rate": 0.10008993801508156,
+        "unnecessary_switch_rate": 0.016019361530482886,
+        "unnecessary_switch_cost_per_conn": 0.3628750336137682,
+        "missed_warning_rate": 0.08224356931893421,
+        "missed_warning_cost_per_conn": 1.9517577458550552
+      },
+      "commit_rate_non_risky": 0.011411304203694968
+    },
+    "model": {
+      "risky": {
+        "n": 257606,
+        "saved_per_conn": 9.816386264295087,
+        "ci95": [
+          9.080370584756443,
+          10.517933673392044
+        ],
+        "commit_rate": 0.4102621833342391,
+        "unnecessary_switch_rate": 0.06428809887968448,
+        "unnecessary_switch_cost_per_conn": 1.7067964255490944,
+        "missed_warning_rate": 0.10826222991700504,
+        "missed_warning_cost_per_conn": 2.325671762303673
+      },
+      "all": {
+        "n": 885054,
+        "saved_per_conn": 2.8825563185975094,
+        "ci95": [
+          2.636813966877901,
+          3.1383276192808207
+        ],
+        "commit_rate": 0.13174337385063511,
+        "unnecessary_switch_rate": 0.022768102285284288,
+        "unnecessary_switch_cost_per_conn": 0.5949501386356086,
+        "missed_warning_rate": 0.057595355763603126,
+        "missed_warning_cost_per_conn": 1.330079294596714
+      },
+      "commit_rate_non_risky": 0.017394270122783082
+    },
+    "oracle": {
+      "risky": {
+        "n": 257606,
+        "saved_per_conn": 13.848854452147854,
+        "ci95": [
+          13.103839017790222,
+          14.569799416553494
+        ],
+        "commit_rate": 0.43612338221935826,
+        "unnecessary_switch_rate": 0.0,
+        "unnecessary_switch_cost_per_conn": 0.0,
+        "missed_warning_rate": 0.0,
+        "missed_warning_cost_per_conn": 0.0
+      },
+      "all": {
+        "n": 885054,
+        "saved_per_conn": 4.807585751829832,
+        "ci95": [
+          4.503967496409292,
+          5.129917685345372
+        ],
+        "commit_rate": 0.15850219308652352,
+        "unnecessary_switch_rate": 0.0,
+        "unnecessary_switch_cost_per_conn": 0.0,
+        "missed_warning_rate": 0.0,
+        "missed_warning_cost_per_conn": 0.0
+      },
+      "commit_rate_non_risky": 0.044521617727684204
+    }
+  },
+  "best_baseline": "rule_slack",
+  "model_minus_best_baseline_per_risky_ci95": [
+    0.4271561997779555,
+    0.3641800735912677,
+    0.48874834247612636
+  ],
+  "by_lead": {
+    "10": {
+      "always_keep": {
+        "risky": {
+          "n": 129880,
+          "saved_per_conn": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "commit_rate": 0.0,
+          "unnecessary_switch_rate": 0.0,
+          "unnecessary_switch_cost_per_conn": 0.0,
+          "missed_warning_rate": 0.44230058515552817,
+          "missed_warning_cost_per_conn": 14.24388666461349
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "commit_rate": 0.0,
+          "unnecessary_switch_rate": 0.0,
+          "unnecessary_switch_cost_per_conn": 0.0,
+          "missed_warning_rate": 0.15850332296108485,
+          "missed_warning_cost_per_conn": 4.870523154519385
+        },
+        "commit_rate_non_risky": 0.0
+      },
+      "rule_transfer": {
+        "risky": {
+          "n": 129880,
+          "saved_per_conn": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "commit_rate": 0.0,
+          "unnecessary_switch_rate": 0.0,
+          "unnecessary_switch_cost_per_conn": 0.0,
+          "missed_warning_rate": 0.44230058515552817,
+          "missed_warning_cost_per_conn": 14.24388666461349
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "commit_rate": 0.0,
+          "unnecessary_switch_rate": 0.0,
+          "unnecessary_switch_cost_per_conn": 0.0,
+          "missed_warning_rate": 0.15850332296108485,
+          "missed_warning_cost_per_conn": 4.870523154519385
+        },
+        "commit_rate_non_risky": 0.0
+      },
+      "rule_slack": {
+        "risky": {
+          "n": 129880,
+          "saved_per_conn": 10.077941176470588,
+          "ci95": [
+            9.293062223978081,
+            10.729077532968274
+          ],
+          "commit_rate": 0.344533415460425,
+          "unnecessary_switch_rate": 0.04095318755774561,
+          "unnecessary_switch_cost_per_conn": 1.4312673236834002,
+          "missed_warning_rate": 0.1481136433631044,
+          "missed_warning_cost_per_conn": 2.7346781644595013
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": 2.9578376008695515,
+          "ci95": [
+            2.6978032201909565,
+            3.1726464353444648
+          ],
+          "commit_rate": 0.10111925374044974,
+          "unnecessary_switch_rate": 0.012019605583388132,
+          "unnecessary_switch_cost_per_conn": 0.42007154365722316,
+          "missed_warning_rate": 0.07216056873365918,
+          "missed_warning_cost_per_conn": 1.4926140099926106
+        },
+        "commit_rate_non_risky": 0.0
+      },
+      "historical_rate": {
+        "risky": {
+          "n": 129880,
+          "saved_per_conn": 0.011857098860486604,
+          "ci95": [
+            -0.027052994157890562,
+            0.06219424974525983
+          ],
+          "commit_rate": 0.018386202648598707,
+          "unnecessary_switch_rate": 0.009154604250076994,
+          "unnecessary_switch_cost_per_conn": 0.34206960271019404,
+          "missed_warning_rate": 0.4335232522328303,
+          "missed_warning_cost_per_conn": 13.88995996304281
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": -0.009278529897610768,
+          "ci95": [
+            -0.022114414266310712,
+            0.008862523403154847
+          ],
+          "commit_rate": 0.0064674019890311775,
+          "unnecessary_switch_rate": 0.0032156230015343698,
+          "unnecessary_switch_cost_per_conn": 0.12045140748474105,
+          "missed_warning_rate": 0.15579388376302464,
+          "missed_warning_cost_per_conn": 4.759350276932255
+        },
+        "commit_rate_non_risky": 0.0015160868327538726
+      },
+      "logreg": {
+        "risky": {
+          "n": 129880,
+          "saved_per_conn": 9.229866030181705,
+          "ci95": [
+            8.42933459810086,
+            9.949710012338727
+          ],
+          "commit_rate": 0.3247305204804435,
+          "unnecessary_switch_rate": 0.04051432091161072,
+          "unnecessary_switch_cost_per_conn": 1.0936710809978443,
+          "missed_warning_rate": 0.17337542346781645,
+          "missed_warning_cost_per_conn": 3.920349553433939
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": 2.67794959403607,
+          "ci95": [
+            2.4237400602209407,
+            2.9130773317316128
+          ],
+          "commit_rate": 0.10445238369636203,
+          "unnecessary_switch_rate": 0.015244267581413111,
+          "unnecessary_switch_cost_per_conn": 0.4022579413233543,
+          "missed_warning_rate": 0.07692637963333311,
+          "missed_warning_cost_per_conn": 1.790315619159961
+        },
+        "commit_rate_non_risky": 0.012944310996107431
+      },
+      "model": {
+        "risky": {
+          "n": 129880,
+          "saved_per_conn": 10.557098860486603,
+          "ci95": [
+            9.78690277396888,
+            11.250250907194317
+          ],
+          "commit_rate": 0.42151216507545425,
+          "unnecessary_switch_rate": 0.05930089313212196,
+          "unnecessary_switch_cost_per_conn": 1.6046581459809055,
+          "missed_warning_rate": 0.09661995688327688,
+          "missed_warning_cost_per_conn": 2.082129658145981
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": 3.1321365701979764,
+          "ci95": [
+            2.8666999349493203,
+            3.3761875354232456
+          ],
+          "commit_rate": 0.13725716170990696,
+          "unnecessary_switch_rate": 0.021894709249379134,
+          "unnecessary_switch_cost_per_conn": 0.5718882689643796,
+          "missed_warning_rate": 0.051095187412293484,
+          "missed_warning_cost_per_conn": 1.166498315357029
+        },
+        "commit_rate_non_risky": 0.01917178159393821
+      },
+      "oracle": {
+        "risky": {
+          "n": 129880,
+          "saved_per_conn": 14.24388666461349,
+          "ci95": [
+            13.417746260292825,
+            14.956309938004898
+          ],
+          "commit_rate": 0.44230058515552817,
+          "unnecessary_switch_rate": 0.0,
+          "unnecessary_switch_cost_per_conn": 0.0,
+          "missed_warning_rate": 0.0,
+          "missed_warning_cost_per_conn": 0.0
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": 4.870523154519385,
+          "ci95": [
+            4.565298700655445,
+            5.195567886271955
+          ],
+          "commit_rate": 0.15850332296108485,
+          "unnecessary_switch_rate": 0.0,
+          "unnecessary_switch_cost_per_conn": 0.0,
+          "missed_warning_rate": 0.0,
+          "missed_warning_cost_per_conn": 0.0
+        },
+        "commit_rate_non_risky": 0.04060809795072398
+      }
+    },
+    "30": {
+      "always_keep": {
+        "risky": {
+          "n": 127726,
+          "saved_per_conn": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "commit_rate": 0.0,
+          "unnecessary_switch_rate": 0.0,
+          "unnecessary_switch_cost_per_conn": 0.0,
+          "missed_warning_rate": 0.42984200554311575,
+          "missed_warning_cost_per_conn": 13.447160327576217
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "commit_rate": 0.0,
+          "unnecessary_switch_rate": 0.0,
+          "unnecessary_switch_cost_per_conn": 0.0,
+          "missed_warning_rate": 0.1585010632119622,
+          "missed_warning_cost_per_conn": 4.744648349140278
+        },
+        "commit_rate_non_risky": 0.0
+      },
+      "rule_transfer": {
+        "risky": {
+          "n": 127726,
+          "saved_per_conn": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "commit_rate": 0.0,
+          "unnecessary_switch_rate": 0.0,
+          "unnecessary_switch_cost_per_conn": 0.0,
+          "missed_warning_rate": 0.42984200554311575,
+          "missed_warning_cost_per_conn": 13.447160327576217
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "commit_rate": 0.0,
+          "unnecessary_switch_rate": 0.0,
+          "unnecessary_switch_cost_per_conn": 0.0,
+          "missed_warning_rate": 0.1585010632119622,
+          "missed_warning_cost_per_conn": 4.744648349140278
+        },
+        "commit_rate_non_risky": 0.0
+      },
+      "rule_slack": {
+        "risky": {
+          "n": 127726,
+          "saved_per_conn": 8.68890437342436,
+          "ci95": [
+            7.919202209078273,
+            9.358441795781069
+          ],
+          "commit_rate": 0.32283168657908334,
+          "unnecessary_switch_rate": 0.04901116452405931,
+          "unnecessary_switch_cost_per_conn": 1.6031818110643095,
+          "missed_warning_rate": 0.16689632494558665,
+          "missed_warning_cost_per_conn": 3.1550741430875466
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": 2.5078673165705143,
+          "ci95": [
+            2.2663998446659432,
+            2.725013104038941
+          ],
+          "commit_rate": 0.09317849532344918,
+          "unnecessary_switch_rate": 0.014146029507804043,
+          "unnecessary_switch_cost_per_conn": 0.4627243083472873,
+          "missed_warning_rate": 0.08260738892768126,
+          "missed_warning_cost_per_conn": 1.7740567242224767
+        },
+        "commit_rate_non_risky": 0.0
+      },
+      "historical_rate": {
+        "risky": {
+          "n": 127726,
+          "saved_per_conn": -0.009034965472965567,
+          "ci95": [
+            -0.04620560865796259,
+            0.03860967159880019
+          ],
+          "commit_rate": 0.018751076523182437,
+          "unnecessary_switch_rate": 0.009465574745940529,
+          "unnecessary_switch_cost_per_conn": 0.3543444561013419,
+          "missed_warning_rate": 0.42104191785540923,
+          "missed_warning_cost_per_conn": 13.101850836947841
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": -0.011172199662393481,
+          "ci95": [
+            -0.024022044305672275,
+            0.006600976856770512
+          ],
+          "commit_rate": 0.0064674019890311775,
+          "unnecessary_switch_rate": 0.0032156230015343698,
+          "unnecessary_switch_cost_per_conn": 0.12042429049526922,
+          "missed_warning_rate": 0.15579162401390198,
+          "missed_warning_cost_per_conn": 4.635396258307403
+        },
+        "commit_rate_non_risky": 0.0014834768631611717
+      },
+      "logreg": {
+        "risky": {
+          "n": 127726,
+          "saved_per_conn": 8.053528647260542,
+          "ci95": [
+            7.3519528401359935,
+            8.686001080060565
+          ],
+          "commit_rate": 0.30729060645444156,
+          "unnecessary_switch_rate": 0.049152091195214756,
+          "unnecessary_switch_cost_per_conn": 0.9414136510968792,
+          "missed_warning_rate": 0.19109656608677952,
+          "missed_warning_cost_per_conn": 4.4522180292187965
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": 2.307956350685947,
+          "ci95": [
+            2.0975068409367092,
+            2.523866319632946
+          ],
+          "commit_rate": 0.0957274923338011,
+          "unnecessary_switch_rate": 0.01679445547955266,
+          "unnecessary_switch_cost_per_conn": 0.32349212590418214,
+          "missed_warning_rate": 0.08756075900453532,
+          "missed_warning_cost_per_conn": 2.1131998725501493
+        },
+        "commit_rate_non_risky": 0.009888786884412692
+      },
+      "model": {
+        "risky": {
+          "n": 127726,
+          "saved_per_conn": 9.06318212423469,
+          "ci95": [
+            8.261715646577088,
+            9.766807361932921
+          ],
+          "commit_rate": 0.3988224793699012,
+          "unnecessary_switch_rate": 0.06935940998700343,
+          "unnecessary_switch_cost_per_conn": 1.8106571880431548,
+          "missed_warning_rate": 0.12010084086247123,
+          "missed_warning_cost_per_conn": 2.573321015298373
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": 2.632976066997042,
+          "ci95": [
+            2.3814713787562813,
+            2.868173628213663
+          ],
+          "commit_rate": 0.12622958599136325,
+          "unnecessary_switch_rate": 0.02364149532118944,
+          "unnecessary_switch_cost_per_conn": 0.6180120083068378,
+          "missed_warning_rate": 0.06409552411491276,
+          "missed_warning_cost_per_conn": 1.4936602738363987
+        },
+        "commit_rate_non_risky": 0.015628921127950675
+      },
+      "oracle": {
+        "risky": {
+          "n": 127726,
+          "saved_per_conn": 13.447160327576217,
+          "ci95": [
+            12.695700085143633,
+            14.115814400208475
+          ],
+          "commit_rate": 0.42984200554311575,
+          "unnecessary_switch_rate": 0.0,
+          "unnecessary_switch_cost_per_conn": 0.0,
+          "missed_warning_rate": 0.0,
+          "missed_warning_cost_per_conn": 0.0
+        },
+        "all": {
+          "n": 442527,
+          "saved_per_conn": 4.744648349140278,
+          "ci95": [
+            4.454553635284792,
+            5.056577475474659
+          ],
+          "commit_rate": 0.1585010632119622,
+          "unnecessary_switch_rate": 0.0,
+          "unnecessary_switch_cost_per_conn": 0.0,
+          "missed_warning_rate": 0.0,
+          "missed_warning_cost_per_conn": 0.0
+        },
+        "commit_rate_non_risky": 0.048408359566837464
+      }
+    }
+  },
+  "sensitivity_w_late": {
+    "1.0": {
+      "rule_x": {
+        "rule_transfer": -1000000000.0,
+        "rule_slack": -1000000000.0
+      },
+      "always_keep": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0
+      },
+      "rule_transfer": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0
+      },
+      "rule_slack": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0
+      },
+      "historical_rate": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0
+      },
+      "logreg": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0
+      },
+      "model": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0
+      },
+      "oracle": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0
+      }
+    },
+    "1.5": {
+      "rule_x": {
+        "rule_transfer": -1000000000.0,
+        "rule_slack": 2
+      },
+      "always_keep": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0
+      },
+      "rule_transfer": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0
+      },
+      "rule_slack": {
+        "saved": 4.230274139577494,
+        "ci95": [
+          3.8358830058782445,
+          4.537522930279564
+        ],
+        "commit_rate": 0.26916298533419253
+      },
+      "historical_rate": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0
+      },
+      "logreg": {
+        "saved": 3.7392529677103794,
+        "ci95": [
+          3.3624306360829768,
+          4.054864065550852
+        ],
+        "commit_rate": 0.21575972609333632
+      },
+      "model": {
+        "saved": 4.446371590723818,
+        "ci95": [
+          4.083308583909038,
+          4.778486650458887
+        ],
+        "commit_rate": 0.31185609030845557
+      },
+      "oracle": {
+        "saved": 6.924427226073927,
+        "ci95": [
+          6.532630092650551,
+          7.265507482127297
+        ],
+        "commit_rate": 0.43612338221935826
+      }
+    },
+    "2.0": {
+      "rule_x": {
+        "rule_transfer": -1000000000.0,
+        "rule_slack": 4
+      },
+      "always_keep": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0
+      },
+      "rule_transfer": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0
+      },
+      "rule_slack": {
+        "saved": 9.38923006451713,
+        "ci95": [
+          8.609135186220554,
+          10.066617009179977
+        ],
+        "commit_rate": 0.3337732816782218
+      },
+      "historical_rate": {
+        "saved": 0.0014984123040612408,
+        "ci95": [
+          -0.03519359034251604,
+          0.05053722576521589
+        ],
+        "commit_rate": 0.01856711412001273
+      },
+      "logreg": {
+        "saved": 8.646615373865515,
+        "ci95": [
+          7.854567523786837,
+          9.323745092202977
+        ],
+        "commit_rate": 0.31608347631654543
+      },
+      "model": {
+        "saved": 9.816386264295087,
+        "ci95": [
+          9.04014965573415,
+          10.513854825092519
+        ],
+        "commit_rate": 0.4102621833342391
+      },
+      "oracle": {
+        "saved": 13.848854452147854,
+        "ci95": [
+          13.065260185301103,
+          14.531014964254593
+        ],
+        "commit_rate": 0.43612338221935826
+      }
+    },
+    "3.0": {
+      "rule_x": {
+        "rule_transfer": 10,
+        "rule_slack": 5
+      },
+      "always_keep": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "commit_rate": 0.0
+      },
+      "rule_transfer": {
+        "saved": 4.392871284053943,
+        "ci95": [
+          3.483163281737188,
+          5.16612693408822
+        ],
+        "commit_rate": 0.6509048702281779
+      },
+      "rule_slack": {
+        "saved": 20.486052343501317,
+        "ci95": [
+          18.87986232609647,
+          21.862012282691982
+        ],
+        "commit_rate": 0.3834382739532464
+      },
+      "historical_rate": {
+        "saved": 5.4763048997305965,
+        "ci95": [
+          4.762768308219849,
+          6.097209996179428
+        ],
+        "commit_rate": 0.4858000201858652
+      },
+      "logreg": {
+        "saved": 19.574435378057963,
+        "ci95": [
+          18.037008396493434,
+          21.03764918322997
+        ],
+        "commit_rate": 0.4669883465447233
+      },
+      "model": {
+        "saved": 21.42921748717033,
+        "ci95": [
+          19.76667542377421,
+          22.802195076134755
+        ],
+        "commit_rate": 0.5416294651522092
+      },
+      "oracle": {
+        "saved": 27.69770890429571,
+        "ci95": [
+          26.130520370602206,
+          29.062029928509187
+        ],
+        "commit_rate": 0.43612338221935826
+      }
+    }
+  },
+  "sensitivity_mct_offset": {
+    "mct-2": {
+      "always_keep": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "miss_rate": 0.13162812664537982
+      },
+      "rule_transfer": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "miss_rate": 0.13162812664537982
+      },
+      "rule_slack": {
+        "saved": 7.802698694906175,
+        "ci95": [
+          7.033204708149209,
+          8.45357408277167
+        ],
+        "miss_rate": 0.13162812664537982
+      },
+      "historical_rate": {
+        "saved": -0.13561407731186387,
+        "ci95": [
+          -0.18836191293761928,
+          -0.09016625170097523
+        ],
+        "miss_rate": 0.13162812664537982
+      },
+      "logreg": {
+        "saved": 7.830760929481456,
+        "ci95": [
+          7.114290309903212,
+          8.499976067046664
+        ],
+        "miss_rate": 0.13162812664537982
+      },
+      "model": {
+        "saved": 8.075006016940598,
+        "ci95": [
+          7.302463083925993,
+          8.763553622481993
+        ],
+        "miss_rate": 0.13162812664537982
+      },
+      "oracle": {
+        "saved": 11.760013353726233,
+        "ci95": [
+          11.02050334352304,
+          12.40154712618606
+        ],
+        "miss_rate": 0.13162812664537982
+      }
+    },
+    "mct+0": {
+      "always_keep": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "miss_rate": 0.16286237901868134
+      },
+      "rule_transfer": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "miss_rate": 0.16286237901868134
+      },
+      "rule_slack": {
+        "saved": 9.38923006451713,
+        "ci95": [
+          8.62781852873534,
+          10.017292354424209
+        ],
+        "miss_rate": 0.16286237901868134
+      },
+      "historical_rate": {
+        "saved": 0.0014984123040612408,
+        "ci95": [
+          -0.040614639707149576,
+          0.05146285545010964
+        ],
+        "miss_rate": 0.16286237901868134
+      },
+      "logreg": {
+        "saved": 8.646615373865515,
+        "ci95": [
+          7.912811897398061,
+          9.309692319972632
+        ],
+        "miss_rate": 0.16286237901868134
+      },
+      "model": {
+        "saved": 9.816386264295087,
+        "ci95": [
+          9.052711099874308,
+          10.470211724801395
+        ],
+        "miss_rate": 0.16286237901868134
+      },
+      "oracle": {
+        "saved": 13.848854452147854,
+        "ci95": [
+          13.059660098923175,
+          14.49628230892988
+        ],
+        "miss_rate": 0.16286237901868134
+      }
+    },
+    "mct+2": {
+      "always_keep": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "miss_rate": 0.23208301414376975
+      },
+      "rule_transfer": {
+        "saved": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "miss_rate": 0.23208301414376975
+      },
+      "rule_slack": {
+        "saved": 10.712790074765339,
+        "ci95": [
+          9.984054855566262,
+          11.32304172350708
+        ],
+        "miss_rate": 0.23208301414376975
+      },
+      "historical_rate": {
+        "saved": 0.29193419407933047,
+        "ci95": [
+          0.24640996122187303,
+          0.32323358367362587
+        ],
+        "miss_rate": 0.23208301414376975
+      },
+      "logreg": {
+        "saved": 9.492876718709969,
+        "ci95": [
+          8.75299660436875,
+          10.151951380454564
+        ],
+        "miss_rate": 0.23208301414376975
+      },
+      "model": {
+        "saved": 11.366967384300056,
+        "ci95": [
+          10.623176239108055,
+          11.97783340614897
+        ],
+        "miss_rate": 0.23208301414376975
+      },
+      "oracle": {
+        "saved": 17.61367359455913,
+        "ci95": [
+          16.919098738833036,
+          18.213102934330138
+        ],
+        "miss_rate": 0.23208301414376975
+      }
+    }
+  }
+}

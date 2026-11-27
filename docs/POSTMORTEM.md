@@ -28,3 +28,14 @@ Only things that actually happened in this build are listed.
   (a) fit the calibrator on a longer window, or with a recency-weighted refit; (b) monitor ECE daily (Phase 9), which is
   exactly the alarm for this; (c) treat "calibration" as a model component that is re-validated, not a free win.
 - **Lesson:** calibration is fitted to a *period*. On non-stationary data a calibrator can hurt; it has to be monitored like the model.
+
+## 3. App bundle export crashed on a duplicated column (Phase 10)
+
+- **What:** `make app-bundle` failed with `KeyError: ['a_known_delay'] not in index`. `load_frame` already returns
+  `a_known_delay`, and the export merged it in again from the feature table, so pandas renamed both copies to `_x`/`_y`.
+- **Impact:** the app had no bundle (`app/bundle/` was empty), so the dashboard could not start. No metrics were affected.
+- **Detected:** running the target end to end for the first time after the Phase 7 frame gained the column.
+- **Fix:** take the column from the sim frame only (`src/cre/evaluate/export_app.py`). App smoke-tested headless with
+  `streamlit.testing.AppTest`, including the stale-data toggle.
+- **Lesson:** every report-producing script needs a `make` target that is actually run. Steps only ever run by hand rot
+  silently when an upstream frame changes.
